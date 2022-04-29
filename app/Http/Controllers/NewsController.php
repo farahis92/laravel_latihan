@@ -19,7 +19,9 @@ class NewsController extends Controller
     {
         try {
             event(new UserSubcribed('visitor'));
-            return response()->json('successed', 200);
+            $app = env("APP_NAME");
+            $config_name = config('app.name');
+            return response()->json($config_name, 200);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
