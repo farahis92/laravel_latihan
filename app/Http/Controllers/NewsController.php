@@ -10,6 +10,13 @@ use Illuminate\Http\Response;
 
 class NewsController extends Controller
 {
+    private $name = "FAJAR";
+
+    private function getName() : String
+    {
+     return "Fajar";
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +26,7 @@ class NewsController extends Controller
     {
         try {
             event(new UserSubcribed('visitor'));
-            $app = env("APP_NAME");
-            $config_name = config('app.name');
-            return response()->json($config_name, 200);
+            return response()->json($this->getName(), 200);
         } catch (Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
